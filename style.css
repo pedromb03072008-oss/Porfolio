@@ -1,103 +1,71 @@
-/* 1º Reset */
-* {                              /* el * selecciona TODOS los elementos */
-    margin: 0;                   /* quita los márgenes que pone el navegador por defecto */
+:root {
+
+  --fondo:            #0d1117;
+  --color-primario:    #65c40c; 
+  --color-secundario: #e6edf3;
+  --color-terciario: #8b949e;
+  /* Margenes y espaciado */
+  --margen:        30px;
+  --padding:       20px;
+
+  --fuente-titulos: "JetBrains Mono", monospace;
+  --fuente-texto: "Inter", sans-serif;
+}
+
+* {
+    margin: 0;
     padding: 0;
-    box-sizing: border-box;      /* el padding y el borde se incluyen dentro del width (no lo agrandan) */
+    box-sizing: border-box;
 }
-
 body {
-    background-color: black;
-    color: white;
-    font-family: "Oswald", sans-serif;   /* si no carga Oswald, usa cualquier letra sin adornos */
+  background-color: var(--fondo);
+  color: var(--color-terciario);
 }
 
-/* 2º Menú */
-nav {
-    display: flex;               /* pone los enlaces (hijos) en fila */
-    justify-content: center;     /* los centra en horizontal */
-    gap: 50px;                   /* separación entre enlaces */
-    padding: 15px;
+h1,h2 {
+  color: var(--color-primario);
+  font-family: var(--fuente-titulos);
 }
 
-nav a {
-    color: white;
-    text-decoration: none;       /* quita el subrayado de los enlaces */
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 1.6rem;           /* rem = relativo al tamaño base (16px), así que 1.6rem ≈ 26px */
+h3,h4,p,a,ul {
+  font-family: var(--fuente-texto);
 }
 
-nav a:hover {                    /* :hover = cuando pasas el ratón por encima */
-    color: #4fc3f7;
+a {
+  color: var(--color-secundario);
+  text-decoration: none;
 }
 
-/* 3º Portada */
-header section {
-    height: 90vh;                /* vh = % del alto de la pantalla, 90vh = 90% de la pantalla */
-    display: flex;
-    flex-direction: column;      /* los hijos en columna (uno debajo de otro) en vez de en fila */
-    justify-content: center;     /* al ser columna, centra en VERTICAL */
-    padding: 0 50px;             /* 0 arriba/abajo, 50px izquierda/derecha */
-
-    /* ⚠️ AQUÍ VA LA FOTO: cambia la ruta por la de tu imagen */
-    /* Son dos capas separadas por coma: primero un degradado negro (encima) y luego la foto (debajo).
-       El degradado va de negro al 80% a la izquierda a transparente a la derecha, para que el texto se lea */
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent), url("./img/baner.png");
-    background-size: cover;      /* la foto cubre todo el hueco sin deformarse (recorta lo que sobre) */
-    background-position: center; /* si recorta, que deje el centro de la foto */
+a:hover {
+  color: var(--color-primario);
 }
 
-h1, h2 {                         /* la coma aplica la regla a los dos a la vez */
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: normal;         /* los h1 y h2 son negrita por defecto, así se la quitamos */
-    line-height: 1;              /* altura de línea = tamaño de la letra, así las líneas quedan pegadas */
+ul {
+  list-style-type: none;
 }
 
-h1 { font-size: 6rem; }
-h1 span { color: #4fc3f7; }      /* la barra | en azul */
-h1 small { font-size: 4.5rem; }  /* "CYBERSECURITY" más pequeño que el nombre */
-h2 { font-size: 4rem; }
-
-header p {
-    margin: 15px 0 40px;         /* 3 valores: arriba 15px · lados 0 · abajo 40px */
+body > nav {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding);
+  background-color: var(--fondo);
+  position:fixed;
+  width: 100%;
+  z-index: 1;
 }
 
-/* 4º Iconos */
-header ul {
-    display: flex;               /* los 3 iconos en fila */
-    gap: 40px;
-    list-style: none;            /* quita los puntitos de la lista */
+#inicio {
+  margin: 0;
+  height: 100vh; 
+  background-image: url('./img/Inicio/1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh;  
 }
 
-header li {
-    display: flex;
-    flex-direction: column;      /* círculo arriba y texto abajo */
-    align-items: center;         /* al ser columna, centra en HORIZONTAL */
-    gap: 12px;
-}
-
-header li span {
-    width: 75px;
-    height: 75px;
-    border: 2px solid orange;
-    border-radius: 50%;          /* 50% en un cuadrado = círculo perfecto */
-    box-shadow: 0 0 15px orange; /* sombra: x · y · difuminado · color. Con x e y a 0 hace de "brillo" alrededor */
-    display: flex;               /* flex + center + center = el emoji justo en el medio del círculo */
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-}
-
-/* El primer icono en azul */
-header li:first-child span {     /* :first-child = solo el primer <li> de la lista */
-    border-color: #4fc3f7;       /* solo cambia el color, el resto del borde se queda igual */
-    box-shadow: 0 0 15px #4fc3f7;
-}
-
-/* 5º Móvil */
-@media (max-width: 768px) {      /* todo lo de dentro solo se aplica si la pantalla mide 768px o menos */
-    nav { gap: 15px; flex-wrap: wrap; }          /* flex-wrap: si no caben en una fila, bajan a otra */
-    header section { padding: 0 20px; }
-    h1 { font-size: 3.5rem; }
-    h1 small, h2 { font-size: 2.5rem; }
-    header ul { flex-wrap: wrap; gap: 20px; }
+#inicio > h1 {
+  padding-top: 100px;
+  padding-left: var(--padding);
+  font-size: 3rem;
 }
